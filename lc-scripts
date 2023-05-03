@@ -1,0 +1,6 @@
+virtualenv --python='/Users/kesseki/.pyenv/shims/python3.7' ~/lc-virt
+source ~/lc-virt/bin/activate
+
+pip install -r requirements.txt
+
+python manage.py runserver
