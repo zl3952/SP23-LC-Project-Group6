@@ -2,7 +2,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-somethint
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -17,10 +16,10 @@ somethint
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLV33ZHYrWb4OL_DPzcyhYABXXUucj1Hs"></script>
   </head>
   <body>
+
       <div id="map" style="width: 100%; height: 768px;">
           <script>
               var gMap;
-              var lastWindow = -1;
               var geocoder = new google.maps.Geocoder();
               function initMap() {
                 gMap = new google.maps.Map(document.getElementById('map'), {
@@ -31,13 +30,39 @@ somethint
               initMap();
 
               function closeAllInfoWindows() {
-                {% for location in locations %}
+                {% for area in data %}
                   infowindow{{ forloop.counter }}.close();
                 {% endfor %}
               }
           </script>
           </div>
   </body>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+<div id="table">
+    <table class="table is-fullwidth is-striped is-bordered">
+      <thead>
+      <tr>
+          <th>UID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Value</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for area in data %}
+      <tr>
+          <th>{{ area.unique_id }}</th>
+          <th>{{ area.name }}</th>
+          <td>{{ area.geo_place_name }}</td>
+          <td>{{ area.data_value }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
 </html>
 
 {% endblock content %}

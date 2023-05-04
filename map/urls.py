@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import maps
+from .views import nyc_data_view
 from .models import NYCData
 
 app_name = "nycmap"
 
 urlpatterns = [
-    path("", maps, name="map"),
+    path("", nyc_data_view, name="map"),
 ]
