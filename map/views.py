@@ -15,13 +15,16 @@ def nyc_data_view(request):
         #search_field = form.cleaned_data['field']
         geo_type_name = form.cleaned_data['geo_type_name']
         geo_place_name = form.cleaned_data['geo_place_name']
+        name = form.cleaned_data['name']
         url = 'https://data.cityofnewyork.us/resource/c3uy-2p5r.json'
         #params = {'$where': f"{search_field} like '%{search_term}%'"}
         params = {}
         if geo_type_name:
         	params['geo_type_name'] = geo_type_name
         if geo_place_name:
-        	params['geo_place_name']= geo_place_name
+        	params['geo_place_name'] = geo_place_name
+        if name:
+        	params['$where'] = f"name like '%{name}%'"
         response = requests.get(url, params=params)
         data = response.json()
     return render(request, 'map.html', {'data': data, 'form': form})
