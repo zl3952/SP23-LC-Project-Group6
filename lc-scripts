@@ -1,3 +1,5 @@
+pipx install git
+pipx install virtualenv
 virtualenv --python='/Users/kesseki/.pyenv/shims/python3.7' ~/lc-virt
 source ~/lc-virt/bin/activate
 
