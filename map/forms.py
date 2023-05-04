@@ -22,13 +22,12 @@ class SearchForm(forms.Form):
         ('Borough', 'Borough'),
     ], initial = '', required=True)
     name = forms.ChoiceField(choices = {
-        ('*', 'Select a pollutant type'),
-        ('O3', 'Ozone (O3)'),
-        ('SO2', 'SO2'),
+        ('', 'Select a pollutant type'),
+        ('Ozone (O3)', 'Ozone (O3)'),
         ('Air Toxics Concentrations', 'Air Toxics Concentrations'),
-        ('PM2.5','PM2.5'),
+        ('Fine Particulate Matter (PM2.5)','PM2.5'),
         ('SO2', 'Sulfur Dioxide (SO2)'),
         ('NO2', 'Nitrogen Dioxide (NO2)'),
         ('Traffic', 'Traffic Density'),
 
-        }, initial = '', required=True)
+    }, initial = '', required=True)

@@ -36,34 +36,41 @@
         {{ form.as_p }}
         <button type="submit">Search</button>
     </form>
+
 <div id="table">
-    <table class="table is-fullwidth is-striped is-bordered">
+    <table class="table is-fullwidth is-striped is-bordered" style="border-collapse: collapse;">
       <thead>
       <tr>
-          <th>Pollutant</th>
-          <th>Location</th>
-          <th>Value</th>
-          <th>Area Type</th>
+          <th style="padding: 10px;">Pollutant</th>
+          <th style="padding: 10px;">Value</th>
+          <th style="padding: 10px;">Measure</th>
+          <th style="padding: 10px;">Unit</th>
       </tr>
       </thead>
       <tbody>
       {% for area in data %}
       <tr>
-          <th>{{ area.name }}</th>
-          <td>{{ area.geo_place_name }}</td>
-          <td>{{ area.data_value }}</td>
-          <td>{{ area.geo_type_name }}</td>
+          <td style="padding: 10px;">{{ area.name }}</td>
+          <td style="padding: 10px;">{{ area.data_value }}</td>
+          <td style="padding: 10px;">{{ area.measure }}</td>
+          <td style="padding: 10px;">{{ area.measure_info }}</td>
       </tr>
-      <script>
-      var address = "{{ area.geo_place_name }}";
-      </script>
       {% endfor %}
       </tbody>
     </table>
 </div>
 
+
 <script>
+  var address = "{{ geo_place_name }}";
  console.log(address)
+ var contentString = 
+     '<div> '+
+    '<h2>Main pollutant: {{ name }}</h2>'+
+    '<p>Max: {{ max_value }}</p>'+
+    '<p>Min: {{ min_value }}</p>'+
+    '<p>Avg: {{ avg_value }}</p>'+
+    `</div>`;
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({'address' : address}, function (results, status) {
     if (status == "OK") {
@@ -74,6 +81,10 @@
       });
       gMap.panTo(marker.getPosition());
       gMap.setZoom(12);
+      var infowindow = new google.maps.InfoWindow({
+              content: contentString
+          });
+      infowindow.open(map, marker);
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }

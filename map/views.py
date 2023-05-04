@@ -2,7 +2,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import View
-from .filters import Filter
 from .models import NYCData
 from .forms import SearchForm
 import requests
@@ -27,7 +26,12 @@ def nyc_data_view(request):
         	params['$where'] = f"name like '%{name}%'"
         response = requests.get(url, params=params)
         data = response.json()
-    return render(request, 'map.html', {'data': data, 'form': form})
+        max_value = max(float(d['data_value']) for d in data)
+        min_value = min(float(d['data_value']) for d in data)
+        data_values = [float(d['data_value']) for d in data]
+        avg_value = sum(data_values) / len(data_values) if data_values else 0
+
+    return render(request, 'map.html', {'data': data, 'form': form, 'max_value': max_value, 'geo_place_name': geo_place_name, 'min_value': min_value, 'avg_value': avg_value, 'name':name})
 
 
 #def maps(request):
