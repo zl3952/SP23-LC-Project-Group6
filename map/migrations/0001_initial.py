@@ -4,29 +4,35 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='NYCData',
+            name="NYCData",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('uid', models.CharField(max_length=30)),
-                ('iid', models.CharField(max_length=30)),
-                ('name', models.CharField(max_length=100)),
-                ('measure', models.CharField(max_length=30)),
-                ('measureInfo', models.CharField(max_length=30)),
-                ('geoType', models.CharField(max_length=30)),
-                ('geoJoinID', models.CharField(max_length=30)),
-                ('geoName', models.CharField(max_length=30)),
-                ('timePeriod', models.CharField(max_length=30)),
-                ('startDate', models.TimeField()),
-                ('value', models.CharField(max_length=30)),
-                ('message', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("uid", models.CharField(max_length=30)),
+                ("iid", models.CharField(max_length=30)),
+                ("name", models.CharField(max_length=100)),
+                ("measure", models.CharField(max_length=30)),
+                ("measureInfo", models.CharField(max_length=30)),
+                ("geoType", models.CharField(max_length=30)),
+                ("geoJoinID", models.CharField(max_length=30)),
+                ("geoName", models.CharField(max_length=30)),
+                ("timePeriod", models.CharField(max_length=30)),
+                ("startDate", models.TimeField()),
+                ("value", models.CharField(max_length=30)),
+                ("message", models.CharField(max_length=100)),
             ],
         ),
     ]
