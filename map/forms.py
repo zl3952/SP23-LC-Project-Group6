@@ -16,11 +16,11 @@ class SearchForm(forms.Form):
         ('Manhattan', 'Manhattan'),
         ('Queens', 'Queens'),
         ('Staten Island', 'Staten Island'),
-    ], initial = '', required=True)
+    ], initial = '', required=True, label = "Borough")
     geo_type_name = forms.ChoiceField(choices=[
         ('', 'Select a area type'),
         ('Borough', 'Borough'),
-    ], initial = '', required=True)
+    ], initial = '', required=True, label = "Area Type")
     name = forms.ChoiceField(choices = {
         ('', 'Select a pollutant type'),
         ('Ozone (O3)', 'Ozone (O3)'),
@@ -30,4 +30,4 @@ class SearchForm(forms.Form):
         ('NO2', 'Nitrogen Dioxide (NO2)'),
         ('Traffic', 'Traffic Density'),
 
-    }, initial = '', required=True)
+    }, initial = '', required=True, label = "Pollutant")

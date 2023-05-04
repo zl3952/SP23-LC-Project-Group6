@@ -9,6 +9,13 @@ import requests
 def nyc_data_view(request):
     form = SearchForm(request.GET)
     data = []
+    max_value = 0
+    min_value = 0
+    data_values = 0
+    avg_value = 0
+    geo_place_name = None
+    name = None
+
     if form.is_valid():
         #search_term = form.cleaned_data['search']
         #search_field = form.cleaned_data['field']
